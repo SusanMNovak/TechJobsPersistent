@@ -10,7 +10,7 @@ using TechJobsPersistent.ViewModels;
 using TechJobsPersistent.Data;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-//
+
 namespace TechJobsPersistent.Controllers
 {
     public class HomeController : Controller
@@ -32,8 +32,12 @@ namespace TechJobsPersistent.Controllers
         [HttpGet("/Add")]
         public IActionResult AddJob()
         {
-            return View();
+            List<Employer> employers = context.Employers.ToList();
+            List<Skill> skills = context.Skills.ToList();
+            AddJobViewModel = new AddJobSkillViewModel(employers, skills)l
+            return View(AddJobSkillViewModel);
         }
+
 
         public IActionResult ProcessAddJobForm()
         {
