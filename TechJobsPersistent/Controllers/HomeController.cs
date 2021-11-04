@@ -34,8 +34,8 @@ namespace TechJobsPersistent.Controllers
         {
             List<Employer> employers = context.Employers.ToList();
             List<Skill> skills = context.Skills.ToList();
-            AddJobViewModel = new AddJobSkillViewModel(employers, skills)l
-            return View(AddJobSkillViewModel);
+            AddJobViewModel addJobViewModel= new AddJobSkillViewModel(employers, skills);
+            return View(addJobSkillViewModel);
         }
 
         [HttpPost]
@@ -69,7 +69,7 @@ namespace TechJobsPersistent.Controllers
 
             List<Employer> employers = context.Employers.ToList();
             List<Skill> skills = context.Skills.ToList();
-            AddJobViewModel.populate(employers, skills)l
+            AddJobViewModel.populate(employers, skills);
             return View("AddJob", addJobViewModel);
       
         }
@@ -81,7 +81,7 @@ namespace TechJobsPersistent.Controllers
                 .Single(j => j.Id == id);
 
             List<JobSkill> jobSkills = context.JobSkills
-                .Where  js => js.JobId == id)
+                .Where  (js => js.JobId == id)
                 .Include(js => js.Skill)
                 .ToList();
 
